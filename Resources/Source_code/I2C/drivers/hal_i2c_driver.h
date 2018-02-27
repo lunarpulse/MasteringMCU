@@ -1,5 +1,13 @@
-#ifndef __HAL_I2C_DRIVER_H
-#define __HAL_I2C_DRIVER_H
+/*
+ * hal_i2c_driver.h
+ *
+ *  Created on: 25Jan.,2018
+ *      Author: uqmjung
+ */
+
+#ifndef HAL_I2C_DRIVER_H_
+#define HAL_I2C_DRIVER_H_
+
 
 #include "stm32f407xx.h"
 #include  <stdint.h>
@@ -45,15 +53,15 @@
 #define I2C_REG_CR2_EVT_INT_ENABLE       ((uint32_t) ( 1 << 9 ) )
 #define I2C_REG_CR2_ERR_INT_ENABLE       ((uint32_t) ( 1 << 8 ) )
 
-#define I2C_PERIPHERAL_CLK_FREQ_2MHZ      ((uint32_t)2 )  
-#define I2C_PERIPHERAL_CLK_FREQ_3MHZ      ((uint32_t)3 )  
-#define I2C_PERIPHERAL_CLK_FREQ_4MHZ     ((uint32_t)4 )  
-#define I2C_PERIPHERAL_CLK_FREQ_5MHZ     ((uint32_t)5 )  
-#define I2C_PERIPHERAL_CLK_FREQ_6MHZ     ((uint32_t)6 )  
-#define I2C_PERIPHERAL_CLK_FREQ_7MHZ     ((uint32_t)7 )  
-#define I2C_PERIPHERAL_CLK_FREQ_8MHZ     ((uint32_t)8 ) 
-#define I2C_PERIPHERAL_CLK_FREQ_9MHZ     ((uint32_t)9 )  
-#define I2C_PERIPHERAL_CLK_FREQ_10MHZ     ((uint32_t)10 )  
+#define I2C_PERIPHERAL_CLK_FREQ_2MHZ      ((uint32_t)2 )
+#define I2C_PERIPHERAL_CLK_FREQ_3MHZ      ((uint32_t)3 )
+#define I2C_PERIPHERAL_CLK_FREQ_4MHZ     ((uint32_t)4 )
+#define I2C_PERIPHERAL_CLK_FREQ_5MHZ     ((uint32_t)5 )
+#define I2C_PERIPHERAL_CLK_FREQ_6MHZ     ((uint32_t)6 )
+#define I2C_PERIPHERAL_CLK_FREQ_7MHZ     ((uint32_t)7 )
+#define I2C_PERIPHERAL_CLK_FREQ_8MHZ     ((uint32_t)8 )
+#define I2C_PERIPHERAL_CLK_FREQ_9MHZ     ((uint32_t)9 )
+#define I2C_PERIPHERAL_CLK_FREQ_10MHZ     ((uint32_t)10 )
 
 /*******************  Bit definition for I2C_OAR1 register  ********************/
 #define I2C_REG_OAR1_ADDRMODE        ((uint32_t) 1 << 15 )
@@ -73,27 +81,27 @@
 #define I2C_REG_SR1_RXNE_FLAG                ( (uint32_t) 1 << 6)
 #define I2C_REG_SR1_STOP_DETECTION_FLAG       ( (uint32_t) 1 << 4) /*  for slave */
 #define I2C_REG_SR1_BTF_FLAG                 ( (uint32_t) 1 << 2)
-#define I2C_REG_SR1_ADDR_FLAG                 ( (uint32_t) 1 << 1)	
-#define I2C_REG_SR1_ADDR_SENT_FLAG         ( (uint32_t)1 << 1 )   //For master 
-#define I2C_REG_SR1_ADDR_MATCHED_FLAG           ( (uint32_t)1 << 1 ) //For SLAVE 	
-#define I2C_REG_SR1_SB_FLAG                 ( (uint32_t) 1 << 0)	
+#define I2C_REG_SR1_ADDR_FLAG                 ( (uint32_t) 1 << 1)
+#define I2C_REG_SR1_ADDR_SENT_FLAG         ( (uint32_t)1 << 1 )   //For master
+#define I2C_REG_SR1_ADDR_MATCHED_FLAG           ( (uint32_t)1 << 1 ) //For SLAVE
+#define I2C_REG_SR1_SB_FLAG                 ( (uint32_t) 1 << 0)
 
 /*******************  Bit definition for I2C_SR2 register  ********************/
-#define I2C_REG_SR2_BUS_BUSY_FLAG             ( (uint32_t) 1 << 1)	
+#define I2C_REG_SR2_BUS_BUSY_FLAG             ( (uint32_t) 1 << 1)
 #define I2C_BUS_IS_BUSY                       1
 #define I2C_BUS_IS_FREE                       0
 
-#define I2C_REG_SR2_MSL_FLAG           ( (uint32_t) 1 << 0)	
+#define I2C_REG_SR2_MSL_FLAG           ( (uint32_t) 1 << 0)
 #define I2C_MASTER_MODE                1
 #define I2C_SLAVE_MODE                 0
 
-#define I2C_REG_SR2_TRA_FLAG          ( (uint32_t) 1 << 2)	
+#define I2C_REG_SR2_TRA_FLAG          ( (uint32_t) 1 << 2)
 #define I2C_RX_MODE                   0
 #define I2C_TX_MODE                   1
 
 /*******************  Bit definition for I2C_CCR register  ********************/
 #define I2C_REG_CCR_ENABLE_FM             ( (uint32_t) 1 << 15)
-#define I2C_ENABLE_SM                     0 
+#define I2C_ENABLE_SM                     0
 #define I2C_ENABLE_FM                     1
 
 #define I2C_REG_CCR_DUTY                   ( (uint32_t) 1 << 14)
@@ -150,14 +158,14 @@ typedef struct
 
 	uint32_t NoStretchMode;    /*!< Specifies if nostretch mode is selected.
 													This parameter can be a value of @ref I2C_nostretch_mode */
-	uint32_t ack_enable; 
+	uint32_t ack_enable;
 
 	uint8_t master;
-	
+
 }i2c_init_t;
 
 
-/** 
+/**
   * @brief  I2C handle Structure definition
   */
 
@@ -174,34 +182,45 @@ typedef struct
 	__IO uint32_t              XferCount;  /*!< I2C transfer counter           */
 
 	hal_i2c_state_t            State;      /*!< I2C communication state        */
-	uint32_t ErrorCode;     
+	uint32_t ErrorCode;
 
 }i2c_handle_t;
 
-#define  RESET  0 
+#define  RESET  0
 #define  SET  !RESET
 
 /*
 Sm mode or SMBus:
 Thigh = CCR * TPCLK1
-Tlow = CCR * TPCLK1 
+Tlow = CCR * TPCLK1
 TPCLK1  = 1/FREQR
 Thigh = (1/sm_mode_freq ) / 2
-so caclulate CCR 
-*/ 
+so caclulate CCR
+*/
 
 
-/** 
-  * @brief  HAL Status structures definition  
-  */  
-typedef enum 
+/**
+  * @brief  HAL Status structures definition
+  */
+typedef enum
 {
   HAL_OK       = 0x00,
   HAL_ERROR    = 0x01,
   HAL_BUSY     = 0x02,
   HAL_TIMEOUT  = 0x03
 } HAL_StatusTypeDef;
+/** @defgroup I2C_Error_Code I2C Error Code
+  * @brief    I2C Error Code
+  * @{
+  */
 
+#define HAL_I2C_ERROR_NONE       ((uint32_t)0x00000000)    /*!< No error           */
+#define HAL_I2C_ERROR_BERR       ((uint32_t)0x00000001)    /*!< BERR error         */
+#define HAL_I2C_ERROR_ARLO       ((uint32_t)0x00000002)    /*!< ARLO error         */
+#define HAL_I2C_ERROR_AF         ((uint32_t)0x00000004)    /*!< AF error           */
+#define HAL_I2C_ERROR_OVR        ((uint32_t)0x00000008)    /*!< OVR error          */
+#define HAL_I2C_ERROR_DMA        ((uint32_t)0x00000010)    /*!< DMA transfer error */
+#define HAL_I2C_ERROR_TIMEOUT    ((uint32_t)0x00000020)    /*!< Timeout Error      */
 #define UNUSED(x) ((void)(x))
 
 /******************************************************************************/
@@ -224,4 +243,7 @@ void hal_i2c_slave_rx(i2c_handle_t *handle, uint8_t *buffer, uint32_t len);
 void HAL_I2C_EV_IRQHandler(i2c_handle_t *hi2c);
 void HAL_I2C_ER_IRQHandler(i2c_handle_t *hi2c);
 
-#endif 
+
+
+
+#endif /* HAL_I2C_DRIVER_H_ */
